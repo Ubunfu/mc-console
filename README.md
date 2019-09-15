@@ -1,4 +1,4 @@
-# mc-site
+# mc-console
 
 ## Project setup
 ```
