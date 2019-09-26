@@ -1,4 +1,5 @@
 # mc-console
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7b110e2e-7b59-4e65-b808-f1e293f8f8b7/deploy-status)](https://app.netlify.com/sites/eager-jang-9f2469/deploys)
 
 ## Project setup
 ```
