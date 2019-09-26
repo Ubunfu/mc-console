@@ -1,24 +1,13 @@
 <template>
   <div id="app">
-    <Banner/>
-    <ServerCard />
-    <ServerCard />
+    <router-view />
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import Banner from './components/Banner.vue'
-import ServerCard from './components/ServerCard.vue'
-
 export default {
-  name: 'app',
-  components: {
-    HelloWorld,
-    Banner,
-    ServerCard
-  }
+  name: 'app'
 }
 </script>
 

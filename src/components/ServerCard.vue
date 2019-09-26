@@ -23,7 +23,7 @@
             </li>
           </ul>
       </div>
-      <div class="server-card-actions">
+      <div class="server-card-actions" @click="sayHello">
           <div class="stop-botton">STOP SERVER</div>
       </div>
   </div>
@@ -38,6 +38,11 @@ export default {
             region: 'us-east-2',
             id: 'i-asded7s9003',
             dns: 'mc.ryanallen.ninja'
+        }
+    },
+    methods: {
+        sayHello: function() {
+            alert("hello!")
         }
     }
 
