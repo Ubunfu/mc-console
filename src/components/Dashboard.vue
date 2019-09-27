@@ -21,7 +21,12 @@ export default {
         }
     },
     created: async function() {
-        await this.getCognitoToken();
+        const tokens = await this.getCognitoToken();
+        for (var token in await tokens) {
+            if (token == 'id_token') {
+                alert(token);
+            }
+        }
     },
     methods: {
         getCognitoToken: async function () {
@@ -37,9 +42,9 @@ export default {
                 },
                 body: "grant_type=authorization_code&client_id=1l9ec2re465bo5rc3d6ihlcrla&code="+authCode+"&redirect_uri=https%3A%2F%2Feager-jang-9f2469.netlify.com%2Fdashboard"
             });
-            const headers = await resp.json();
+            const respJson = await resp.json();
             this.authenticated=true;
-            this.cognitoToken=headers;
+            return respJson;
         }
     },
     components: {
