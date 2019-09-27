@@ -46,7 +46,7 @@ export default {
                 body: JSON.stringify({region: 'us-east-2'})
             });
 
-            if (resp.status == 200) {
+            if (await resp.status == 200) {
                 this.gotServers = true;
                 const respJson = await resp.json();
                 return respJson.instanceList;
