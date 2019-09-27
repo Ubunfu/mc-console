@@ -48,7 +48,7 @@ export default {
             console.log('idtoken: ' + idToken)
             // eslint-disable-next-line
             console.log('instanceid: ' + instanceId)
-            const resp = await fetch('https://ablsu41v22.execute-api.us-east-2.amazonaws.com/dev/server/stop', {
+            const resp = await fetch('https://api.ryanallen.ninja/mc/server/stop', {
                 method: 'POST',
                 mode: 'cors',
                 headers: {

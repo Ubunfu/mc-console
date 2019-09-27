@@ -44,7 +44,7 @@ export default {
     methods: {
         startServer: async function (idToken) {
             this.startingServer=true;
-            const resp = await fetch('https://ablsu41v22.execute-api.us-east-2.amazonaws.com/dev/server/start', {
+            const resp = await fetch('https://api.ryanallen.ninja/mc/server/start', {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
@@ -63,7 +63,7 @@ export default {
 
         },
         getServerList: async function (idToken) {
-            const resp = await fetch('https://ablsu41v22.execute-api.us-east-2.amazonaws.com/dev/server/list', {
+            const resp = await fetch('https://api.ryanallen.ninja/mc/server/list', {
                 method: 'POST',
                 mode: 'cors',
                 headers: {

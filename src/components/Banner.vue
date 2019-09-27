@@ -10,9 +10,6 @@
 export default {
     name: 'Banner',
     data: function() {
-        return {
-            title: 'hello :)'
-        }
     }
 }
 </script>
