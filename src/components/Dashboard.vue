@@ -40,7 +40,7 @@ export default {
             const resp = await fetch('https://ablsu41v22.execute-api.us-east-2.amazonaws.com/dev/server/list', {
                 method: 'POST',
                 headers: {
-                    // 'Authorization': 'Bearer ' + idToken,
+                    'Authorization': 'Bearer ' + idToken,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({region: 'us-east-2'})
