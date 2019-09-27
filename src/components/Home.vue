@@ -7,6 +7,7 @@
         </div>
     </a>
     <ServerCard v-bind:key="server.instanceId" v-for="server in serverList" :server="server"/>
+    <button @click="log">log!</button>
   </div>
 </template>
 
@@ -29,6 +30,13 @@ export default {
               }
             ]
         };
+    },
+    methods: {
+      log: function () {
+        // eslint-disable-next-line
+        console.log('serverlist: ' + JSON.stringify(this.serverList))
+        console.log('info: ' + JSON.stringify(this.serverList[0].instanceId))
+      }
     }
 }   
 </script>

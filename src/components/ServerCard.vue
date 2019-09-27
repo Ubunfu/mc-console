@@ -23,7 +23,7 @@
             </li>
           </ul>
       </div>
-      <div class="server-card-actions" @click="sayHello">
+      <div class="server-card-actions">
           <div class="stop-botton">STOP SERVER</div>
       </div>
   </div>

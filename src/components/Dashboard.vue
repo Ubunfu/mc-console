@@ -51,7 +51,7 @@ export default {
                 this.gotServers = true;
                 const respJson = await resp.json();
                 // eslint-disable-next-line
-                console.log('resp: ' + respJson)
+                console.log('resp: ' + JSON.stringify(respJson))
                 return respJson.instanceList;
             }
         },
