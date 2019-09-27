@@ -31,21 +31,24 @@ export default {
         const idToken = await tokens.id_token;
         // eslint-disable-next-line
         console.log('idToken: ' + idToken)
-        if (await idToken != null) {
+        if (idToken != null) {
             this.serverList = await this.getServerList(idToken);
-
         }
     },
     methods: {
         getServerList: async function (idToken) {
-            const resp = fetch('https://ablsu41v22.execute-api.us-east-2.amazonaws.com/dev/server/list', {
+            const resp = await fetch('https://ablsu41v22.execute-api.us-east-2.amazonaws.com/dev/server/list', {
                 method: 'POST',
                 headers: {
                     'Authorization': 'Bearer ' + idToken
                 }
             });
-            const respJson = await resp.json();
-            return respJson.instanceList;
+
+            if (resp.status == 200) {
+                this.gotServers = true;
+                const respJson = await resp.json();
+                return respJson.instanceList;
+            }
         },
         getCognitoToken: async function () {
 
