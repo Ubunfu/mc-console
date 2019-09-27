@@ -4,6 +4,8 @@
         <Banner/>
         <div v-if="authenticated">
             Authenticated! 
+            <div class="button-start" @click="startServer(this.idToken)">Start a Server</div>
+            <div v-if="startingServer">Starting a new server, hang tight...</div>
             <div v-if="gotServers">
                 <ServerCard v-bind:key="server.instanceId" v-for="server in serverList" :server="server"/>
             </div>
@@ -23,13 +25,16 @@ export default {
     data() {
         return {
             authenticated: false,
+            idToken: '',
             gotServers: false,
+            startingServer: false,
             serverList: []
         }
     },
     created: async function() {
         const tokens = await this.getCognitoToken();
         const idToken = await tokens.id_token;
+        this.idToken = idToken;
         // eslint-disable-next-line
         console.log('idToken: ' + idToken)
         if (idToken != null) {
@@ -37,6 +42,26 @@ export default {
         }
     },
     methods: {
+        startServer: async function (idToken) {
+            this.startingServer=true;
+            const resp = await fetch('https://ablsu41v22.execute-api.us-east-2.amazonaws.com/dev/server/start', {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Authorization': 'Bearer ' + idToken,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({'region': 'us-east-2','subnetId': 'subnet-01509367f8ea39127','templateName': 'mc-server-template-1.14.4'})
+            });
+            if (await resp.status == 200) {
+                const respJson = await resp.json();
+                // eslint-disable-next-line
+                console.log('resp: ' + JSON.stringify(respJson))
+                alert('Server ' + respJson.instanceId + ' is on it\'s way up!  Just a moment...');
+                this.startingServer=false;
+            }
+
+        },
         getServerList: async function (idToken) {
             const resp = await fetch('https://ablsu41v22.execute-api.us-east-2.amazonaws.com/dev/server/list', {
                 method: 'POST',
@@ -82,5 +107,10 @@ export default {
 </script>
 
 <style>
-
+.button-start {
+  padding: 10px 30px;
+  width: 150px;
+  background-color: chartreuse;
+  color: gray;
+}
 </style>

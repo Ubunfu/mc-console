@@ -35,6 +35,7 @@ export default {
       log: function () {
         // eslint-disable-next-line
         console.log('serverlist: ' + JSON.stringify(this.serverList))
+        // eslint-disable-next-line
         console.log('info: ' + JSON.stringify(this.serverList[0].instanceId))
       }
     }
@@ -46,6 +47,7 @@ export default {
   padding: 10px 30px;
   width: 150px;
   background-color: chartreuse;
+  color: gray;
 }
 
 </style>

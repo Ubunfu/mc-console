@@ -19,7 +19,7 @@ export default {
 
 <style>
 #banner {
-    box-shadow: 0 5px 3px 0 #333;
+    box-shadow: 0 5px 3px 0 #666;
     color: lightgray;
 }
 
