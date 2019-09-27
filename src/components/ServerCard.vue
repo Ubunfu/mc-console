@@ -1,7 +1,8 @@
 <template>
   <div class="server-card">
       <div class="server-card-icon">
-          <img src="../assets/old-server.gif" alt="">
+          <img v-if="server.instanceState == 'running'" src="../assets/old-server.gif" alt="">
+          <img v-else src="../assets/bsod.jpg" alt="" style="height:120px;">
       </div>
       <div class="server-card-metadata">
           <ul>

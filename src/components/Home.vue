@@ -18,13 +18,6 @@ export default {
     },
     data() {
         return {
-            serverList:  [ 
-              { 
-                "instanceId": "i-0d5372eb1ccf7c149", 
-                "instanceState": "running", 
-                "publicDnsName": "ec2-13-59-204-221.us-east-2.compute.amazonaws.com" 
-              }
-            ]
         };
     },
     methods: {
