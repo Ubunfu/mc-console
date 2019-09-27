@@ -45,7 +45,9 @@ export default {
                 },
                 body: JSON.stringify({region: 'us-east-2'})
             });
-
+            
+            // eslint-disable-next-line
+            console.log('resp: ' + resp)
             if (await resp.status == 200) {
                 this.gotServers = true;
                 const respJson = await resp.json();
