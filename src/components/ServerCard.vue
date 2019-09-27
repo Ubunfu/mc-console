@@ -7,7 +7,7 @@
           <ul>
             <li>
                 <span class="label">Status:  </span>
-                <span class="value">{{ status }}</span>
+                <span class="value">{{ server.instanceState }}</span>
             </li>
             <li>
                 <span class="label">Region:  </span>
@@ -15,11 +15,11 @@
             </li>
             <li>
                 <span class="label">Instance ID:  </span>
-                <span class="value">{{ id }}</span>
+                <span class="value">{{ server.instanceId }}</span>
             </li>
             <li>
                 <span class="label">Public DNS:  </span>
-                <span class="value">{{ dns }}</span>
+                <span class="value">{{ server.publicDnsName }}</span>
             </li>
           </ul>
       </div>
@@ -32,18 +32,13 @@
 <script>
 export default {
     name: 'ServerCard',
+    props: ['server'],
     data: function () {
         return {
-            status: 'RUNNING',
-            region: 'us-east-2',
-            id: 'i-asded7s9003',
-            dns: 'mc.ryanallen.ninja'
+            region: 'us-east-2'
         }
     },
     methods: {
-        sayHello: function() {
-            alert("hello!")
-        }
     }
 
 }

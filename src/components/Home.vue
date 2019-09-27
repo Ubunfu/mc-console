@@ -6,20 +6,28 @@
             Log In Now!
         </div>
     </a>
-    <div>{{responseMessage}}</div>
+    <ServerCard v-bind:key="server.instanceId" v-for="server in serverList" :server="server"/>
   </div>
 </template>
 
 <script>
 import Banner from '@/components/Banner'
+import ServerCard from '@/components/ServerCard'
 export default {
     name: 'Home',
     components: {
-        Banner
+        Banner,
+        ServerCard
     },
     data() {
         return {
-            responseMessage: "Empty"
+            serverList:  [ 
+              { 
+                "instanceId": "i-0d5372eb1ccf7c149", 
+                "instanceState": "running", 
+                "publicDnsName": "ec2-13-59-204-221.us-east-2.compute.amazonaws.com" 
+              }
+            ]
         };
     }
 }   

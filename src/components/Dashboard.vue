@@ -5,7 +5,7 @@
         <div v-if="authenticated">
             Authenticated! 
             <div v-if="gotServers">
-                Server list is: {{ serverList }}
+                <ServerCard v-bind:key="server.instanceId" v-for="server in serverList" :server="server"/>
             </div>
             <div v-else>Loading servers...</div>
         </div>
