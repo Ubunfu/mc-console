@@ -24,8 +24,9 @@
             </li>
           </ul>
       </div>
-      <div class="server-card-actions" v-if="server.instanceState == 'running'">
-          <div class="stop-botton">STOP SERVER</div>
+      <div class="server-card-actions">
+          <div class="stop-botton" v-if="server.instanceState == 'running' && stoppingServer== false" @click="stopServer(server.instanceId, idToken)">STOP SERVER</div>
+          <div class="stop-botton" v-else-if="stoppingServer== true">STOPPING...</div>
       </div>
   </div>
 </template>
@@ -57,7 +58,6 @@ export default {
                 // eslint-disable-next-line
                 console.log('resp: ' + JSON.stringify(respJson))
                 alert('Server ' + instanceId + ' is on it\'s way down!  Just a moment...');
-                this.stoppingServer=false;
             }
         }
     }
