@@ -44,6 +44,8 @@ export default {
     methods: {
         stopServer: async function (instanceId, idToken) {
             this.stoppingServer=true;
+            // eslint-disable-next-line
+            console.log('idtoken: ' + idToken)
             const resp = await fetch('https://ablsu41v22.execute-api.us-east-2.amazonaws.com/dev/server/stop', {
                 method: 'POST',
                 mode: 'cors',
