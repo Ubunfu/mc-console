@@ -1,8 +1,13 @@
+
 <template>
     <div id="dashboard">
         <Banner/>
         <div v-if="authenticated">
-            Authenticated! Token is: {{ cognitoToken }}
+            Authenticated! 
+            <div v-if="gotServers">
+                Server list is: {{ serverList }}
+            </div>
+            <div v-else>Loading servers...</div>
         </div>
         <div v-else>Loading...</div>
     </div>
@@ -17,19 +22,34 @@ export default {
     data() {
         return {
             authenticated: false,
-            cognitoToken: ""
+            gotServers: false,
+            serverList: []
         }
     },
     created: async function() {
         const tokens = await this.getCognitoToken();
-        this.cognitoToken = await tokens.id_token;
+        const idToken = await tokens.id_token;
+        // eslint-disable-next-line
+        console.log('idToken: ' + idToken)
+        if (await idToken != null) {
+            this.serverList = await this.getServerList(idToken);
+
+        }
     },
     methods: {
+        getServerList: async function (idToken) {
+            const resp = fetch('https://ablsu41v22.execute-api.us-east-2.amazonaws.com/dev/server/list', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + idToken
+                }
+            });
+            const respJson = await resp.json();
+            return respJson.instanceList;
+        },
         getCognitoToken: async function () {
 
             const authCode = this.$route.query.code;
-
-            alert("code is: " + authCode);
 
             const resp = await fetch('https://minecraft-ryanallen-ninja.auth.us-east-2.amazoncognito.com/oauth2/token', {
                 method: 'POST',
