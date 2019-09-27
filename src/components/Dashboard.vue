@@ -46,15 +46,6 @@ export default {
                 },
                 body: JSON.stringify({region: 'us-east-2'})
             });
-            resp = await fetch('https://ablsu41v22.execute-api.us-east-2.amazonaws.com/dev/server/list', {
-                method: 'POST',
-                mode: 'cors',
-                headers: {
-                    'Authorization': 'Bearer ' + idToken,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({region: 'us-east-2'})
-            });
             
             // eslint-disable-next-line
             console.log('resp: ' + resp)
