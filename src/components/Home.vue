@@ -21,12 +21,6 @@ export default {
         return {
             responseMessage: "Empty"
         };
-    },
-    methods: {
-        loginFunction: async function () {
-            // const resp = await fetch('https://httpbin.org/headers');
-            // const data = await resp.json();
-        }
     }
 }   
 </script>
