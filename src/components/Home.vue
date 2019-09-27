@@ -6,19 +6,15 @@
             Log In Now!
         </div>
     </a>
-    <ServerCard v-bind:key="server.instanceId" v-for="server in serverList" :server="server"/>
-    <button @click="log">log!</button>
   </div>
 </template>
 
 <script>
 import Banner from '@/components/Banner'
-import ServerCard from '@/components/ServerCard'
 export default {
     name: 'Home',
     components: {
-        Banner,
-        ServerCard
+        Banner
     },
     data() {
         return {
