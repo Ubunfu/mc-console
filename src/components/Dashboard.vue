@@ -16,6 +16,7 @@
 <script>
 // Import leveraged components
 import Banner from '@/components/Banner'
+import ServerCard from '@/components/ServerCard'
 
 export default {
     name: 'Dashboard',
@@ -74,7 +75,8 @@ export default {
         }
     },
     components: {
-        Banner
+        Banner,
+        ServerCard
     }
 }
 </script>
