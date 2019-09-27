@@ -7,7 +7,7 @@
             <div class="button-start" @click="startServer(idToken)">Start a Server</div>
             <div v-if="startingServer">Starting a new server, hang tight...</div>
             <div v-if="gotServers">
-                <ServerCard v-bind:key="server.instanceId" v-for="server in serverList" :server="server"/>
+                <ServerCard v-bind:key="server.instanceId" v-for="server in serverList" :server="server" :idToken="idToken"/>
             </div>
             <div v-else>Loading servers...</div>
         </div>

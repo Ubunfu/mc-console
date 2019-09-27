@@ -24,7 +24,7 @@
             </li>
           </ul>
       </div>
-      <div class="server-card-actions">
+      <div class="server-card-actions" v-if="server.instanceState == 'running'">
           <div class="stop-botton">STOP SERVER</div>
       </div>
   </div>
@@ -33,13 +33,33 @@
 <script>
 export default {
     name: 'ServerCard',
-    props: ['server'],
+    props: ['server', 'idToken'],
     data: function () {
         return {
-            region: 'us-east-2'
+            region: 'us-east-2',
+            stoppingServer: false
         }
     },
     methods: {
+        stopServer: async function (instanceId, idToken) {
+            this.stoppingServer=true;
+            const resp = await fetch('https://ablsu41v22.execute-api.us-east-2.amazonaws.com/dev/server/stop', {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Authorization': 'Bearer ' + idToken,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({'instanceId': instanceId})
+            });
+            if (await resp.status == 200) {
+                const respJson = await resp.json();
+                // eslint-disable-next-line
+                console.log('resp: ' + JSON.stringify(respJson))
+                alert('Server ' + instanceId + ' is on it\'s way down!  Just a moment...');
+                this.stoppingServer=false;
+            }
+        }
     }
 
 }
