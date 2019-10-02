@@ -164,5 +164,6 @@ export default {
   width: 150px;
   background-color: chartreuse;
   color: gray;
+  margin: auto auto;
 }
 </style>
