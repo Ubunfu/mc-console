@@ -6,6 +6,8 @@
             Log In Now!
         </div>
     </a>
+    <!-- <button @click="setCookie">Set a Cookie!</button>
+    <button @click="getCookie(cookieName)">Get Cookie!</button> -->
   </div>
 </template>
 
@@ -21,12 +23,6 @@ export default {
         };
     },
     methods: {
-      log: function () {
-        // eslint-disable-next-line
-        console.log('serverlist: ' + JSON.stringify(this.serverList))
-        // eslint-disable-next-line
-        console.log('info: ' + JSON.stringify(this.serverList[0].instanceId))
-      }
     }
 }   
 </script>

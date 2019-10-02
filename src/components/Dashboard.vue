@@ -11,6 +11,9 @@
             </div>
             <div v-else>Loading servers...</div>
         </div>
+        <div v-else-if="error">
+            <FatalError :msg="errorMsg" />
+        </div>
         <div v-else>Loading...</div>
     </div>
 </template>
@@ -19,21 +22,29 @@
 // Import leveraged components
 import Banner from '@/components/Banner'
 import ServerCard from '@/components/ServerCard'
+import FatalError from '@/components/FatalError'
 
 export default {
     name: 'Dashboard',
+    components: {
+        Banner,
+        ServerCard,
+        FatalError
+    },
     data() {
         return {
             authenticated: false,
+            error: false,
+            errorMsg: '',
             idToken: '',
             gotServers: false,
             startingServer: false,
-            serverList: []
+            serverList: [],
+            idTokenCookieName: 'idToken'
         }
     },
     created: async function() {
-        const tokens = await this.getCognitoToken();
-        const idToken = await tokens.id_token;
+        const idToken = await this.getIdToken();
         this.idToken = idToken;
         // eslint-disable-next-line
         console.log('idToken: ' + idToken)
@@ -42,6 +53,45 @@ export default {
         }
     },
     methods: {
+        getIdToken: async function () {
+            var tokenFromCookie = await this.getIdTokenCookie(this.idTokenCookieName);
+            if (tokenFromCookie.length > 0) {
+                // eslint-disable-next-line
+                console.log('Found valid ID Token cookie: ' + tokenFromCookie);
+                return tokenFromCookie;
+            } else {
+                // eslint-disable-next-line
+                console.log('Could not find valid ID token cookie :(');
+                let newTokens = await this.getCognitoToken();
+                if (newTokens.id_token) {
+                    await this.storeTokenInCookie(this.idTokenCookieName, newTokens.id_token);
+                    return newTokens.id_token;
+                }
+            }
+        },
+        storeTokenInCookie: async function(cookieName, idToken) {
+            try {
+                document.cookie = cookieName + '=' + idToken + '; expires=' + new Date(new Date().getTime()+10*1000).toGMTString() + ';';
+            } catch (error) {
+                // eslint-disable-next-line
+                console.log('Error setting ID token cookie!: ' + error);
+            }
+        },
+        getIdTokenCookie: async function (cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+            }
+            return "";
+        },
         startServer: async function (idToken) {
             this.startingServer=true;
             const resp = await fetch('https://api.ryanallen.ninja/mc/server/start', {
@@ -92,16 +142,17 @@ export default {
                 },
                 body: "grant_type=authorization_code&client_id=1l9ec2re465bo5rc3d6ihlcrla&code="+authCode+"&redirect_uri=https%3A%2F%2Feager-jang-9f2469.netlify.com%2Fdashboard"
             });
+            const respJson = await resp.json();
             if (resp.status == 200) {
                 this.authenticated = true;
-                const respJson = await resp.json();
-                return respJson;
+            } else {
+                this.error = true;
+                this.errorMsg = 'User authentication failed!';
+                // eslint-disable-next-line
+                console.log('Error authenticating with Cognito!: HTTP ' + resp.status + ' : ' + JSON.stringify(respJson));
             }
+            return respJson;
         }
-    },
-    components: {
-        Banner,
-        ServerCard
     }
 }
 </script>
