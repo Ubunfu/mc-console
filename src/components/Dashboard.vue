@@ -3,7 +3,7 @@
     <div id="dashboard">
         <Banner/>
         <div v-if="authenticated">
-            Authenticated! 
+            <p>Authenticated!</p>
             <div class="button-start" @click="startServer(idToken)">Start a Server</div>
             <div v-if="startingServer">Starting a new server, hang tight...</div>
             <div v-if="gotServers">
