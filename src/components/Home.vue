@@ -6,8 +6,6 @@
             Log In Now!
         </div>
     </a>
-    <!-- <button @click="setCookie">Set a Cookie!</button>
-    <button @click="getCookie(cookieName)">Get Cookie!</button> -->
   </div>
 </template>
 
