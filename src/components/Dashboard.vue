@@ -58,12 +58,14 @@ export default {
             if (tokenFromCookie.length > 0) {
                 // eslint-disable-next-line
                 console.log('Found valid ID Token cookie: ' + tokenFromCookie);
+                this.authenticated = true;
                 return tokenFromCookie;
             } else {
                 // eslint-disable-next-line
                 console.log('Could not find valid ID token cookie :(');
                 let newTokens = await this.getCognitoToken();
                 if (newTokens.id_token) {
+                    this.authenticated = true;
                     await this.storeTokenInCookie(this.idTokenCookieName, newTokens.id_token);
                     return newTokens.id_token;
                 }
@@ -143,9 +145,7 @@ export default {
                 body: "grant_type=authorization_code&client_id=1l9ec2re465bo5rc3d6ihlcrla&code="+authCode+"&redirect_uri=https%3A%2F%2Feager-jang-9f2469.netlify.com%2Fdashboard"
             });
             const respJson = await resp.json();
-            if (resp.status == 200) {
-                this.authenticated = true;
-            } else {
+            if (resp.status != 200) {
                 this.error = true;
                 this.errorMsg = 'User authentication failed!';
                 // eslint-disable-next-line
