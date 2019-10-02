@@ -71,7 +71,7 @@ export default {
         },
         storeTokenInCookie: async function(cookieName, idToken) {
             try {
-                document.cookie = cookieName + '=' + idToken + '; expires=' + new Date(new Date().getTime()+10*1000).toGMTString() + ';';
+                document.cookie = cookieName + '=' + idToken + '; expires=' + new Date(new Date().getTime()+60*1000*30).toGMTString() + ';';
             } catch (error) {
                 // eslint-disable-next-line
                 console.log('Error setting ID token cookie!: ' + error);
