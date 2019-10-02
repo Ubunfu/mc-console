@@ -9,7 +9,10 @@
 <script>
 export default {
     name: 'Banner',
-    data: function() {
+    data() {
+        return {
+
+        };
     }
 }
 </script>
