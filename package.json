@@ -11,6 +11,7 @@
     "async-await": "^0.1.40",
     "core-js": "^2.6.5",
     "fetch": "^1.1.0",
+    "particles.js": "^2.0.0",
     "vue": "^2.6.10",
     "vue-router": "^3.1.3"
   },
