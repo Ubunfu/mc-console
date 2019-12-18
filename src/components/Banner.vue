@@ -21,6 +21,7 @@ export default {
 #banner {
     box-shadow: 0 5px 3px 0 #666;
     color: lightgray;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 
 </style>
