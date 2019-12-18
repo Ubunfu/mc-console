@@ -2,6 +2,7 @@
 <template>
     <div id="dashboard">
         <Banner/>
+        <NavbarMain/>
         <div v-if="authenticated">
             <p>Authenticated!</p>
             <div class="button-start" @click="startServer(idToken)">Start a Server</div>
@@ -24,13 +25,15 @@
 import Banner from '@/components/Banner'
 import ServerCard from '@/components/ServerCard'
 import FatalError from '@/components/FatalError'
+import NavbarMain from '@/components/NavbarMain'
 
 export default {
     name: 'Dashboard',
     components: {
         Banner,
         ServerCard,
-        FatalError
+        FatalError,
+        NavbarMain
     },
     data() {
         return {
