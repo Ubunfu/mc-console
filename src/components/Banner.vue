@@ -1,8 +1,6 @@
 <template>
   <div id="banner">
-      <h1>
-          Minecraft Console
-      </h1>
+      <img src="../assets/banner-logo.png" alt="Minecraft Console">
   </div>
 </template>
 
@@ -18,10 +16,5 @@ export default {
 </script>
 
 <style>
-#banner {
-    box-shadow: 0 5px 3px 0 #666;
-    color: lightgray;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-}
 
 </style>
