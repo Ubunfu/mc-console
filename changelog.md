@@ -1,5 +1,8 @@
 # Change Log
 
+## v1.2.1
+- Security patches
+
 ## v1.2.0
 - New background image
 - Fixed positioning of particles
