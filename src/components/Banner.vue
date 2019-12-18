@@ -1,6 +1,8 @@
 <template>
   <div id="banner">
-      <img src="../assets/banner-logo.png" alt="Minecraft Console">
+      <router-link to="/">
+        <img src="../assets/banner-logo.png" alt="Minecraft Console">
+      </router-link>
   </div>
 </template>
 
