@@ -41,6 +41,7 @@ export default {
     padding: 5px 15px;
     font-weight: bold;
     box-shadow: 1px 2px 1px black;
+    color: white;
 }
 
 #navbar-main nav ul li:hover {

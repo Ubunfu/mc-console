@@ -1,5 +1,9 @@
 # Change Log
 
+## v1.3.0
+- Removed unnecessary vue pages
+- Adding resource pack directory
+
 ## v1.2.2
 - Fixed page-stuck issue when routing
 
