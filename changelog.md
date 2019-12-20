@@ -1,5 +1,8 @@
 # Change Log
 
+## v1.2.2
+- Fixed page-stuck issue when routing
+
 ## v1.2.1
 - Security patches
 
