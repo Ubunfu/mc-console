@@ -14,10 +14,6 @@
 <script>
 export default {
     name: 'NavbarMain',
-    data() {
-        return;
-    }
-
 }
 </script>
 
